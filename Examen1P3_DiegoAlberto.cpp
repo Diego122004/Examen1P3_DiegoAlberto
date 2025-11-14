@@ -48,10 +48,10 @@ int main() {
     int playerCol = cols / 2;
 
     vector<Animatronico> anim;
-    anim.push_back(Animatronico("Bonnie", 0, 20, 60));
-    anim.push_back(Animatronico("Chica", 10, 20, 50));
-    anim.push_back(Animatronico("Foxy", 0, 0, 80));
-    anim.push_back(Animatronico("Freddy", 10, 0, 30));
+    anim.push_back(Animatronico("Bonnie", 0, 1, 10));
+    anim.push_back(Animatronico("Chica", 0, 3, 10));
+    anim.push_back(Animatronico("Foxy", 0, 2, 10));
+    
 
     for (int turno = 1; turno <= 10; turno++) {
         mapa = createRoomMap(filas, cols);
