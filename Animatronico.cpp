@@ -6,6 +6,10 @@ Animatronico::Animatronico(const char* nombre, int fila, int col, int odm)
 	: nombre(nombre), fila(fila), col(col), odm(odm) {
 }
 
+Animatronico::Animatronico(const char* nombre, char* mensage, int fila, int col, int odm)
+	: nombre(nombre),mensage(mensage), fila(fila), col(col), odm(odm) {
+}
+
 const char* Animatronico::getNombre() const { return nombre; }
 int Animatronico::getFila() const { return fila; }
 int Animatronico::getCol() const { return col; }
@@ -17,7 +21,7 @@ void Animatronico::setPosicion(int f, int c) {
 }
 
 void Animatronico::mover(int pf, int pc) {
-	int chance = rand() % 100;
+	int chance = rand() % 20;
 	if (chance > odm) return;
 
 

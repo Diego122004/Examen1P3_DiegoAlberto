@@ -6,67 +6,93 @@
 
 using namespace std;
 
+
+// --- Prototipo ---
+void ejercicio1();
+void mostrarMenuRecursivo();
+/*
 char** createRoomMap(int filas, int cols) {
     char** map = new char* [filas];
     for (int i = 0; i < filas; i++) {
         map[i] = new char[cols];
         for (int j = 0; j < cols; j++)
-            map[i][j] = '.';
+            map[i][j] = ' ';
+        cout << "[" << "]";
+
     }
 
-    
-        int top = filas / 2 - 2;
-    int bottom = filas / 2 + 2;
-    int left = cols / 2 - 2;
-    int right = cols / 2 + 2;
-
-    for (int i = top; i <= bottom; i++)
-        for (int j = left; j <= right; j++)
-            map[i][j] = '#';
-
-    map[filas / 2][cols / 2] = 'P';
     return map;
-   
-
-}
-
-void printMap(char** map, int filas, int cols) {
-    for (int i = 0; i < filas; i++) {
-        for (int j = 0; j < cols; j++)
-            cout << map[i][j] << ' ';
-        cout << endl;
-    }
-}
+}*/
 
 int main() {
-    srand(time(NULL));
-    int filas = 5, cols = 6;
+    setlocale(LC_ALL, "spanish");
+    mostrarMenuRecursivo(); // llamada inicial
+    return 0;
+}
 
+// --------------------
+// Menú recursivo principal
+// --------------------
+void mostrarMenuRecursivo() {
+    cout << "==================== Examen #1 - PROGRAMACION III ====================\n";
+    cout << "Seleccione una opcion:\n";
+    cout << "1. Ejercicio 1 - Five Nights at Freddy´s\n";
+    cout << "0. Salir\n";
+    cout << "Opcion: ";
+
+    int opcion;
+    cin >> opcion;
+
+    switch (opcion) {
+    case 1:
+        ejercicio1();
+        break;
+    case 0:
+        cout << "Saliendo... Gracias.\n";
+        return; // finaliza la recursión
+    default:
+        cout << "Opcion no valida. Intente de nuevo.\n";
+    }
+
+    // Esperar antes de volver al menú
+   /* cout << "\nPresione cualquier tecla y luego Enter para continuar...";
+    char pausa;
+    cin >> pausa;*/
+
+    // Llamada recursiva al menú
+    mostrarMenuRecursivo();
+}
+
+// --------------------
+// Ejercicio 1:Five Nights at Freddy´s
+// --------------------
+void ejercicio1() {
+    int filas = 4;
+    int cols = 5;
+    char simbolo = '[';
+    char sim2 = ']';
+    char** map = new char* [filas];
+    for (int i = 0; i < filas; i++) {
+        map[i] = new char[cols];
+       // cout << simbolo << sim2;
+        for (int j = 0; j < cols; j++)
+           // if () {}
+            map[i][j] = ' ';
+        //cout << simbolo << sim2;
+        
+        cout << endl;
+    }
     
-    char** mapa = createRoomMap(filas, cols);
-    int playerFila = filas / 2;
-    int playerCol = cols / 2;
-
-    vector<Animatronico> anim;
-    anim.push_back(Animatronico("Bonnie", 0, 1, 10));
-    anim.push_back(Animatronico("Chica", 0, 3, 10));
-    anim.push_back(Animatronico("Foxy", 0, 2, 10));
-    
-
-    for (int turno = 1; turno <= 10; turno++) {
-        mapa = createRoomMap(filas, cols);
-
-        for (auto& a : anim) {
-            a.mover(playerFila, playerCol);
-            mapa[a.getFila()][a.getCol()] = 'A';
-        }
-
-        cout << "Turno " << turno << endl;
-        printMap(mapa, filas, cols);
+    for (int i = 0; i < filas; i++) {
+        cout << simbolo << sim2;
+        for (int j = 0; j < cols; j++)
+            if (i >= 1 && i <= filas - 1) {
+                sim2 = '|';
+                cout << simbolo << map[i][j] << " " << sim2;
+            };
+            //cout <<simbolo<< map[i][j] << " "<<sim2;
+        cout << simbolo << sim2;
         cout << endl;
     }
 
-    return 0;
-   
-
-}
+};
