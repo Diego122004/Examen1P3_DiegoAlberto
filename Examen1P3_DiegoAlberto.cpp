@@ -10,6 +10,7 @@ using namespace std;
 // --- Prototipo ---
 void ejercicio1();
 void mostrarMenuRecursivo();
+
 /*
 char** createRoomMap(int filas, int cols) {
     char** map = new char* [filas];
@@ -67,10 +68,17 @@ void mostrarMenuRecursivo() {
 // Ejercicio 1:Five Nights at Freddy´s
 // --------------------
 void ejercicio1() {
+
+    Animatronico("Bonnie", 0, 1, 10);
+    Animatronico("Chica", 0, 1, 10);
+    Animatronico("Foxy", 0, 1, 10);
+
     int filas = 4;
     int cols = 5;
     char simbolo = '[';
     char sim2 = ']';
+    char simbolo3 = 'B';
+    char sim4 = 'C';
     char** map = new char* [filas];
     for (int i = 0; i < filas; i++) {
         map[i] = new char[cols];
@@ -86,13 +94,13 @@ void ejercicio1() {
     for (int i = 0; i < filas; i++) {
         cout << simbolo << sim2;
         for (int j = 0; j < cols; j++)
-            if (i >= 1 && i <= filas - 1) {
-                sim2 = '|';
-                cout << simbolo << map[i][j] << " " << sim2;
-            };
-            //cout <<simbolo<< map[i][j] << " "<<sim2;
+           
+         cout <<simbolo<< map[i][j] << " "<<sim2;
+       
         cout << simbolo << sim2;
         cout << endl;
     }
+
+
 
 };

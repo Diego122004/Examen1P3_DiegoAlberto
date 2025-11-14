@@ -8,7 +8,7 @@ private:
 	int odm;
 
 public:
-	//Animatronico();
+	Animatronico();
 	Animatronico(const char* nombre, char* mensage, int fila, int col, int odm);
 	Animatronico(const char* nombre, int fila, int col, int odm);
 	//Animatronico( char* mensage, int fila, int col, int odm);
