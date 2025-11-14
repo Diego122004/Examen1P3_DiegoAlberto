@@ -1,19 +1,72 @@
-// Examen1P3_DiegoAlberto.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
 #include <iostream>
+#include <vector>
+#include <ctime>
+#include <cstdlib>
+#include "Animatronico.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+char** createRoomMap(int filas, int cols) {
+    char** map = new char* [filas];
+    for (int i = 0; i < filas; i++) {
+        map[i] = new char[cols];
+        for (int j = 0; j < cols; j++)
+            map[i][j] = '.';
+    }
+
+    
+        int top = filas / 2 - 2;
+    int bottom = filas / 2 + 2;
+    int left = cols / 2 - 2;
+    int right = cols / 2 + 2;
+
+    for (int i = top; i <= bottom; i++)
+        for (int j = left; j <= right; j++)
+            map[i][j] = '#';
+
+    map[filas / 2][cols / 2] = 'P';
+    return map;
+   
+
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
+void printMap(char** map, int filas, int cols) {
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < cols; j++)
+            cout << map[i][j] << ' ';
+        cout << endl;
+    }
+}
 
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
+int main() {
+    srand(time(NULL));
+    int filas = 5, cols = 6;
+
+    
+    char** mapa = createRoomMap(filas, cols);
+    int playerFila = filas / 2;
+    int playerCol = cols / 2;
+
+    vector<Animatronico> anim;
+    anim.push_back(Animatronico("Bonnie", 0, 20, 60));
+    anim.push_back(Animatronico("Chica", 10, 20, 50));
+    anim.push_back(Animatronico("Foxy", 0, 0, 80));
+    anim.push_back(Animatronico("Freddy", 10, 0, 30));
+
+    for (int turno = 1; turno <= 10; turno++) {
+        mapa = createRoomMap(filas, cols);
+
+        for (auto& a : anim) {
+            a.mover(playerFila, playerCol);
+            mapa[a.getFila()][a.getCol()] = 'A';
+        }
+
+        cout << "Turno " << turno << endl;
+        printMap(mapa, filas, cols);
+        cout << endl;
+    }
+
+    return 0;
+   
+
+}
